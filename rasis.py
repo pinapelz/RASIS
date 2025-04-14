@@ -99,4 +99,5 @@ if __name__ == "__main__":
     queued_posts = generate_queued_posts()
     for post in queued_posts:
         content = generate_post_content(post)
-        post_on_fedi(post)
+        cleaned = content.encode("utf-8", "replace").decode("utf-8")
+        post_on_fedi(cleaned)
