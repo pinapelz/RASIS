@@ -55,14 +55,22 @@ def generate_post_content(post_data: dict) -> str:
     elif "SOUND_VOLTEX" in post_data["identifier"]:
         game = "SOUND VOLTEX"
         tags = "#sdvx #soundvoltex #bemani"
-    elif "CHUNITHM" in post_data["identifier"]:
+    elif "CHUNITHM_JP" in post_data["identifier"]:
         post_data['headline'] = None
         game = "CHUNITHM (JPN)"
         tags = "#chunithm"
-    elif "MAIMAIDX" in post_data["identifier"]:
+    elif "MAIMAIDX_JP" in post_data["identifier"]:
         post_data['headline'] = None
         game = "maimai DX (JPN)"
         tags = "#maimaidx"
+    elif "MAIMAIDX_INTL" in post_data["identifier"]:
+        post_data['headline'] = None
+        game = "maimai DX (International)"
+        tags = "#maimaidx"
+    elif "ONGEKI_JPN" in post_data["identifier"]:
+        post_data['headline'] = None
+        game = "O.N.G.E.K.I (JPN)"
+        tags = "#ongeki"
     content = f"📰 {game} - {post_data['date']}\n\n"
     if post_data["type"] is not None:
         content = content + f"[{post_data['type']}] "
