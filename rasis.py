@@ -8,7 +8,7 @@ import os
 load_dotenv()
 
 
-HASHED_NEWS_FILES = "hashes.txt"
+HASHED_NEWS_FILES = os.environ.get("HASH_FILE_PATH")
 
 def generate_queued_posts() -> list:
     def news_already_hashed(line: str) -> bool:
@@ -56,8 +56,11 @@ def generate_post_content(post_data: dict) -> str:
         game = "SOUND VOLTEX"
         tags = "#sdvx #soundvoltex #bemani"
     elif "CHUNITHM" in post_data["identifier"]:
-        game = "CHUNITHM JPN"
+        game = "CHUNITHM (JPN)"
         tags = "#chunithm"
+    elif "MAIMAIDX" in post_data["identifier"]:
+        game = "maimai DX (JPN)"
+        tags = "#maimaidx"
     content = f"📰 {game} - {post_data['date']}\n\n"
     if post_data["type"] is not None:
         content = content + f"[{post_data['type']}] "
@@ -96,4 +99,4 @@ if __name__ == "__main__":
     queued_posts = generate_queued_posts()
     for post in queued_posts:
         content = generate_post_content(post)
-        post_on_fedi(content)
+        post_on_fedi(post)
