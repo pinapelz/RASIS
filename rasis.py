@@ -59,6 +59,10 @@ def generate_post_content(post_data: dict) -> str:
         post_data['headline'] = None
         game = "CHUNITHM (JPN)"
         tags = "#chunithm"
+    elif "CHUNITHM_INTL" in post_data["identifier"]:
+        post_data['headline'] = None
+        game = "CHUNITHM (International)"
+        tags = "#chunithm"
     elif "MAIMAIDX_JP" in post_data["identifier"]:
         post_data['headline'] = None
         game = "maimai DX (JPN)"
