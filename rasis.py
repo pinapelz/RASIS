@@ -67,7 +67,7 @@ def generate_post_content(post_data: dict) -> str:
     elif "GITADORA " in post_data["identifier"]:
         game = "GITADORA"
         tags = "#gitadora #bemani"
-    elif "NOLSTALGIA" in post_data["identifier"]:
+    elif "NOSTALGIA" in post_data["identifier"]:
         game = "NOSTALGIA"
         tags = "#bemani"
     elif "CHUNITHM_JP" in post_data["identifier"]:
