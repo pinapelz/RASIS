@@ -55,6 +55,21 @@ def generate_post_content(post_data: dict) -> str:
     elif "SOUND_VOLTEX" in post_data["identifier"]:
         game = "SOUND VOLTEX"
         tags = "#sdvx #soundvoltex #bemani"
+    elif "DDR" in post_data["identifier"]:
+        game = "DanceDanceRevolution"
+        tags = "#ddr #dancedancerevolution #bemani"
+    elif "POPN_MUSIC" in post_data["identifier"]:
+        game = "pop'n music"
+        tags = "#popn #bemani"
+    elif "JUBEAT" in post_data["identifier"]:
+        game = "jubeat"
+        tags = "#jubeat #bemani"
+    elif "GITADORA " in post_data["identifier"]:
+        game = "GITADORA"
+        tags = "#gitadora #bemani"
+    elif "NOLSTALGIA" in post_data["identifier"]:
+        game = "NOSTALGIA"
+        tags = "#bemani"
     elif "CHUNITHM_JP" in post_data["identifier"]:
         post_data['headline'] = None
         game = "CHUNITHM (JPN)"
