@@ -67,7 +67,7 @@ def generate_post_content(post_data: dict) -> str:
     elif "GITADORA " in post_data["identifier"]:
         game = "GITADORA"
         tags = "#gitadora #bemani"
-    elif "NOLSTALGIA" in post_data["identifier"]:
+    elif "NOSTALGIA" in post_data["identifier"]:
         game = "NOSTALGIA"
         tags = "#bemani"
     elif "CHUNITHM_JP" in post_data["identifier"]:
@@ -93,12 +93,18 @@ def generate_post_content(post_data: dict) -> str:
     elif "TAIKO" in post_data["identifier"]:
         game = "Taiko no Tatsujin"
         tags = "#taikonotatsujin"
+    else:
+        return None
     content = f"📰 {game} - {post_data['date']}\n\n"
     if post_data["type"] is not None:
         content = content + f"[{post_data['type']}] "
     if post_data["headline"] is not None and post_data["headline"]  != post_data["content"] :
         content = content + f"[{post_data['headline']}]\n\n"
-    content = content + post_data["content"] + "\n\n"
+        if len(post_data["content"]) > 3000:
+            truncated_content = post_data["content"][:3000] + "..."
+            content = content + truncated_content + "\n\n"
+        else:
+            content = content + post_data["content"] + "\n\n"
     if post_data["url"] is not None:
         content = content + f"🔗 {post_data['url']}\n"
     for i in range(len(post_data["images"])):
@@ -131,5 +137,7 @@ if __name__ == "__main__":
     queued_posts = generate_queued_posts()
     for post in queued_posts:
         content = generate_post_content(post)
+        if content is None:
+            continue
         cleaned = content.encode("utf-8", "replace").decode("utf-8")
         post_on_fedi(cleaned)
