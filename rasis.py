@@ -90,6 +90,8 @@ def generate_post_content(post_data: dict) -> str:
         post_data['headline'] = None
         game = "O.N.G.E.K.I (JPN)"
         tags = "#ongeki"
+    else:
+        return None
     content = f"📰 {game} - {post_data['date']}\n\n"
     if post_data["type"] is not None:
         content = content + f"[{post_data['type']}] "
@@ -132,5 +134,7 @@ if __name__ == "__main__":
     queued_posts = generate_queued_posts()
     for post in queued_posts:
         content = generate_post_content(post)
+        if content is None:
+            continue
         cleaned = content.encode("utf-8", "replace").decode("utf-8")
         post_on_fedi(cleaned)
