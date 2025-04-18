@@ -90,6 +90,9 @@ def generate_post_content(post_data: dict) -> str:
         post_data['headline'] = None
         game = "O.N.G.E.K.I (JPN)"
         tags = "#ongeki"
+    elif "TAIKO" in post_data["identifier"]:
+        game = "Taiko no Tatsujin"
+        tags = "#taikonotatsujin"
     content = f"📰 {game} - {post_data['date']}\n\n"
     if post_data["type"] is not None:
         content = content + f"[{post_data['type']}] "
