@@ -100,11 +100,11 @@ def generate_post_content(post_data: dict) -> str:
         content = content + f"[{post_data['type']}] "
     if post_data["headline"] is not None and post_data["headline"]  != post_data["content"] :
         content = content + f"[{post_data['headline']}]\n\n"
-        if len(post_data["content"]) > 3000:
-            truncated_content = post_data["content"][:3000] + "..."
-            content = content + truncated_content + "\n\n"
-        else:
-            content = content + post_data["content"] + "\n\n"
+    if len(post_data["content"]) > 3000:
+        truncated_content = post_data["content"][:3000] + "..."
+        content = content + truncated_content + "\n\n"
+    else:
+        content = content + post_data["content"] + "\n\n"
     if post_data["url"] is not None:
         content = content + f"🔗 {post_data['url']}\n"
     for i in range(len(post_data["images"])):
@@ -140,4 +140,5 @@ if __name__ == "__main__":
         if content is None:
             continue
         cleaned = content.encode("utf-8", "replace").decode("utf-8")
+        print(cleaned)
         post_on_fedi(cleaned)
