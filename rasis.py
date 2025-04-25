@@ -96,12 +96,14 @@ def generate_post_content(post_data: dict) -> str:
     else:
         return None
     content = f"📰 {game} - {post_data['date']}\n\n"
+    if post_data["is_ai_summary"]:
+        content = content + "The information below is written by AI / 上記の情報はAIによって生成されました。\n\n"
     if post_data["type"] is not None:
         content = content + f"[{post_data['type']}] "
     if post_data["headline"] is not None and post_data["headline"]  != post_data["content"] :
         content = content + f"[{post_data['headline']}]\n\n"
-    if len(post_data["content"]) > 3000:
-        truncated_content = post_data["content"][:3000] + "..."
+    if len(post_data["content"]) > 2500:
+        truncated_content = post_data["content"][:2500] + "..."
         content = content + truncated_content + "\n\n"
     else:
         content = content + post_data["content"] + "\n\n"
