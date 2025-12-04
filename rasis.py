@@ -173,7 +173,7 @@ def main():
         return
 
     data = response.json()
-    news_posts = data["news_posts"]
+    news_posts = sorted(data["news_posts"], key=lambda x: x.get('timestamp', 0))
 
     posts_to_make = []
     for post in news_posts:
