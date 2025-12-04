@@ -66,23 +66,23 @@ def generate_post_content(post_data: dict) -> str:
             tags = "#bemani"
         case "CHUNITHM_JP":
             post_data['headline'] = None
-            game = "CHUNITHM (JPN)"
+            game = "CHUNITHM (Japan/日本)"
             tags = "#chunithm"
         case "CHUNITHM_INTL":
             post_data['headline'] = None
-            game = "CHUNITHM (International)"
+            game = "CHUNITHM (International/海外版)"
             tags = "#chunithm"
         case "MAIMAIDX_JP":
             post_data['headline'] = None
-            game = "maimai DX (JPN)"
+            game = "maimai DX (Japan/日本)"
             tags = "#maimaidx"
         case "MAIMAIDX_INTL":
             post_data['headline'] = None
-            game = "maimai DX (International)"
+            game = "maimai DX (International/海外版)"
             tags = "#maimaidx"
         case x if "ONGEKI_JPN" in x:
             post_data['headline'] = None
-            game = "O.N.G.E.K.I (JPN)"
+            game = "O.N.G.E.K.I"
             tags = "#ongeki"
         case "TAIKO":
             game = "Taiko no Tatsujin"
