@@ -85,8 +85,8 @@ def generate_post_content(post_data: dict) -> str:
             game = "O.N.G.E.K.I (JPN)"
             tags = "#ongeki"
         case "TAIKO":
-            game = "Taiko no Tatsufin"
-            tags = "#taikonotatsufin"
+            game = "Taiko no Tatsujin"
+            tags = "#taikonotatsujin"
         case "MUSIC_DIVER":
             game = "MUSIC DIVER"
             tags = "#music_diver"
