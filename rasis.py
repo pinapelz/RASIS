@@ -72,6 +72,9 @@ def generate_post_content(post_data: dict) -> str:
     elif "TAIKO" in post_data["identifier"]:
         game = "Taiko no Tatsujin"
         tags = "#taikonotatsufin"
+    elif "MUSIC_DIVER" in post_data["identifier"]:
+        game = "MUSIC DIVER"
+        tags = "#music_diver"
     else:
         return None
 
