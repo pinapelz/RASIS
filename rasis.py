@@ -28,55 +28,71 @@ def is_post_after_start_date(post_date) -> bool:
 
 def generate_post_content(post_data: dict) -> str:
     """Generate post content from post data"""
-    if "IIDX" in post_data["identifier"]:
-        game = "beatmania IIDX"
-        tags = "#iidx #beatmania #bemani"
-    elif "SOUND_VOLTEX" in post_data["identifier"]:
-        game = "SOUND VOLTEX"
-        tags = "#sdvx #soundvoltex #bemani"
-    elif "DDR" in post_data["identifier"]:
-        game = "DanceDanceRevolution"
-        tags = "#ddr #dancedancerevolution #bemani"
-    elif "POPN_MUSIC" in post_data["identifier"]:
-        game = "pop'n music"
-        tags = "#popn #bemani"
-    elif "JUBEAT" in post_data["identifier"]:
-        game = "jubeat"
-        tags = "#jubeat #bemani"
-    elif "GITADORA " in post_data["identifier"]:
-        game = "GITADORA"
-        tags = "#gitadora #bemani"
-    elif "NOSTALGIA" in post_data["identifier"]:
-        game = "NOSTALGIA"
-        tags = "#bemani"
-    elif "CHUNITHM_JP" in post_data["identifier"]:
-        post_data['headline'] = None
-        game = "CHUNITHM (JPN)"
-        tags = "#chunithm"
-    elif "CHUNITHM_INTL" in post_data["identifier"]:
-        post_data['headline'] = None
-        game = "CHUNITHM (International)"
-        tags = "#chunithm"
-    elif "MAIMAIDX_JP" in post_data["identifier"]:
-        post_data['headline'] = None
-        game = "maimai DX (JPN)"
-        tags = "#maimaidx"
-    elif "MAIMAIDX_INTL" in post_data["identifier"]:
-        post_data['headline'] = None
-        game = "maimai DX (International)"
-        tags = "#maimaidx"
-    elif "ONGEKI_JPN" in post_data["identifier"]:
-        post_data['headline'] = None
-        game = "O.N.G.E.K.I (JPN)"
-        tags = "#ongeki"
-    elif "TAIKO" in post_data["identifier"]:
-        game = "Taiko no Tatsujin"
-        tags = "#taikonotatsufin"
-    elif "MUSIC_DIVER" in post_data["identifier"]:
-        game = "MUSIC DIVER"
-        tags = "#music_diver"
-    else:
-        return None
+    identifier = post_data["identifier"]
+
+    match identifier:
+        case "IIDX_EAMUSEMENT":
+            game = "beatmania IIDX"
+            tags = "#iidx #beatmania #bemani"
+        case "SOUND_VOLTEX":
+            game = "SOUND VOLTEX"
+            tags = "#sdvx #soundvoltex #bemani"
+        case "DDR_EAMUSEMENT":
+            game = "DanceDanceRevolution"
+            tags = "#ddr #dancedancerevolution #bemani"
+        case "POPN_MUSIC_EAMUSEMENT":
+            game = "pop'n music"
+            tags = "#popn #bemani"
+        case "JUBEAT_EAMUSEMENT":
+            game = "jubeat"
+            tags = "#jubeat #bemani"
+        case "GITADORA_EAMUSEMENT":
+            game = "GITADORA"
+            tags = "#gitadora #bemani"
+        case "POLARIS_CHORD":
+            game = "POLARIS CHORD"
+            tags = "#polarischord #bemani"
+        case "DANCE_AROUND_EAMUSEMENT":
+            game = "DANCE aROUND"
+            tags = "#dancearound #bemani"
+        case "IDAC_NEWS":
+            game = "(頭文字D) INITIAL D THE ARCADE"
+            tags = "#頭文字D"
+        case "DANCE_RUSH_EAMUSEMENT":
+            game = "DANCERUSH"
+            tags = "#dancerush #bemani"
+        case "NOSTALGIA_EAMUSEMENT":
+            game = "NOSTALGIA"
+            tags = "#bemani"
+        case "CHUNITHM_JP":
+            post_data['headline'] = None
+            game = "CHUNITHM (JPN)"
+            tags = "#chunithm"
+        case "CHUNITHM_INTL":
+            post_data['headline'] = None
+            game = "CHUNITHM (International)"
+            tags = "#chunithm"
+        case "MAIMAIDX_JP":
+            post_data['headline'] = None
+            game = "maimai DX (JPN)"
+            tags = "#maimaidx"
+        case "MAIMAIDX_INTL":
+            post_data['headline'] = None
+            game = "maimai DX (International)"
+            tags = "#maimaidx"
+        case x if "ONGEKI_JPN" in x:
+            post_data['headline'] = None
+            game = "O.N.G.E.K.I (JPN)"
+            tags = "#ongeki"
+        case "TAIKO":
+            game = "Taiko no Tatsufin"
+            tags = "#taikonotatsufin"
+        case "MUSIC_DIVER":
+            game = "MUSIC DIVER"
+            tags = "#music_diver"
+        case _:
+            print(post_data["identifier"], " is not supported")
+            return None
 
     content = f"📰 {game} - {post_data['date']}\n\n"
 
@@ -218,7 +234,7 @@ def main():
             print(f"  ✓ Posted successfully ({posts_made_this_run} posted this run)")
         else:
             print("  ✗ Failed to post")
-            break
+
 
     posts_in_hour = db.get_posts_count_last_hour()
     print(f"\nStatus: {posts_in_hour}/{POSTS_PER_HOUR} posts made in last hour")
