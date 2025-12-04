@@ -120,7 +120,9 @@ def generate_post_content(post_data: dict) -> str:
 
 def post_on_fedi(content: str, dry_run: bool = False) -> bool:
     """Post content to Fediverse"""
-    print(f"[DRY RUN] Would post:\n{'-' * 60}\n{content}\n{'-' * 60}")
+    if dry_run:
+        print(f"[DRY RUN] Would post:\n{'-' * 60}\n{content}\n{'-' * 60}")
+        return True
     try:
         conn = http.client.HTTPSConnection(os.environ.get("SHARKEY_INSTANCE"))
         payload = {
