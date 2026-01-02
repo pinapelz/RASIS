@@ -95,8 +95,7 @@ def generate_post_content(post_data: dict) -> str:
             return None
 
     content = f"📰 {game} - {post_data['date']}\n\n"
-
-    if post_data["is_ai_summary"]:
+    if "is_ai_summary" in post_data and post_data["is_ai_summary"]:
         content += "The information below is written by AI / 上記の情報はAIによって生成されました。\n\n"
 
     if post_data["type"] is not None:
